@@ -2,7 +2,7 @@ import os
 import re
 import sys
 import setuptools
-from distutils.errors import DistutilsSetupError, DistutilsError
+from setuptools.errors import SetupError, BaseError
 from pylint import lint
 from pylint.__pkginfo__ import numversion as pylint_version
 from pkg_resources import *
@@ -22,10 +22,10 @@ def user_options():
 
 def validate_rcfile(dist, attr, value):
     if not os.path.exists(value):
-        raise DistutilsSetupError("Cannot find PyLint configuration file %s" % value)
+        raise SetupError("Cannot find PyLint configuration file %s" % value)
 
 
-class DistutilsPylintError(DistutilsError):
+class DistutilsPylintError(BaseError):
     pass
 
 
